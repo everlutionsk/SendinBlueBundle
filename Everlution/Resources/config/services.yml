@@ -1,0 +1,19 @@
+services:
+    everlution.sendin_blue.mail_system:
+        class: Everlution\SendinBlueBundle\Outbound\MailSystem\MailSystem
+        arguments:
+            - '%everlution.sendin_blue.base_url%'
+            - '%everlution.sendin_blue.api_key%'
+            - '%everlution.sendin_blue.timeout%'
+            - '@everlution.sendin_blue.outbound.message_converter'
+
+    everlution.sendin_blue.outbound.message_converter:
+        class: Everlution\SendinBlueBundle\Outbound\MailSystem\MessageConverter
+        public: false
+
+    everlution.sendin_blue.outbound.message_event.request_processor:
+        class: Everlution\SendinBlueBundle\Outbound\MessageEvent\RequestProcessor
+
+    everlution.sendin_blue.inbound.request_processor:
+        class: Everlution\SendinBlueBundle\Inbound\RequestProcessor
+
