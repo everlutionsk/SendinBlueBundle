@@ -1,7 +1,6 @@
 {
   "name": "everlutionsk/sendin-blue-bundle",
   "license": "MIT",
-  "version": "0.1",
   "description": "Everlution SendinBlue bundle for Symfony framework",
   "type": "everlution-bundle",
   "keywords": ["email", "symfony", "everlution", "bundle", "sendinblue"],
