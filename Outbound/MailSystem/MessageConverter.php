@@ -25,7 +25,7 @@ class MessageConverter
             'text' => $message->getText(),
             'to' => $this->getRawRecipients($message),
             'inline_image' => $this->getRawImages($message->getImages()),
-            'attachments' => $this->getRawAttachments($message->getAttachments()),
+            'attachment' => $this->getRawAttachments($message->getAttachments()),
         ];
     }
 
