@@ -24,6 +24,7 @@ class MessageConverter
             'from' => $this->getRawFrom($message),
             'text' => $message->getText(),
             'to' => $this->getRawRecipients($message),
+            'replyto' => $this->getRawReplyTo($message),
             'inline_image' => $this->getRawImages($message->getImages()),
             'attachment' => $this->getRawAttachments($message->getAttachments()),
         ];
@@ -37,6 +38,16 @@ class MessageConverter
     protected function getRawFrom(OutboundMessage $message)
     {
         return [$message->getFromEmail(), $message->getFromName()];
+    }
+    
+    /**
+     * @param OutboundMessage $message
+     *
+     * @return array
+     */
+    protected function getRawReplyTo(OutboundMessage $message)
+    {
+        return false === empty($message->getReplyTo()) ? [$message->getReplyTo(), ''] : [];
     }
 
     /**
