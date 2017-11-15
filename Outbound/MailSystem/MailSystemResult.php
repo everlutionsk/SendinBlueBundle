@@ -44,7 +44,7 @@ class MailSystemResult implements MailSystemResultInterface
         $messagesStatus = [];
 
         foreach ($recipients as $recipient) {
-            $messagesStatus = $this->createMailSystemMessageStatus($mandrillResult, $recipient);
+            $messagesStatus[] = $this->createMailSystemMessageStatus($mandrillResult, $recipient);
         }
 
         return $messagesStatus;

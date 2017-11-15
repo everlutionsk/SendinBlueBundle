@@ -91,7 +91,10 @@ class MailSystem implements MailSystemInterface
         try {
             return $this->mailin->send_email($rawMessage);
         } catch (\Exception $e) {
-            throw new MailSystemException($e->getMessage());
+            return [
+                'code' => 'failure',
+                'message' => $e->getMessage()
+            ];
         }
     }
 
