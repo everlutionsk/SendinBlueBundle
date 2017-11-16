@@ -59,6 +59,16 @@ class MailSystem implements MailSystemInterface
         return $this->sendMessageToSendinBlue($uniqueMessage);
     }
 
+    /**
+     * @param UniqueOutboundMessage $uniqueMessage
+     * @return MailSystemResult
+     * @throws MailSystemException
+     */
+    public function resendMessage(UniqueOutboundMessage $uniqueMessage)
+    {
+        return $this->sendMessageToSendinBlue($uniqueMessage);
+    }
+
     protected function sendMessageToSendinBlue(UniqueOutboundMessage $uniqueMessage)
     {
         $rawMessage = $this->messageConverter->convertToRawMessage($uniqueMessage);
