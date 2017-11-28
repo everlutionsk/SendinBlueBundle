@@ -64,7 +64,14 @@ class MailSystem implements MailSystemInterface
         $rawMessage = $this->messageConverter->convertToRawMessage($uniqueMessage);
         $this->transformRawMessage($rawMessage);
 
-        $result = $this->sendRawMessage($rawMessage);
+        try {
+            $result = $this->sendRawMessage($rawMessage);
+        } catch (MailSystemException $e) {
+            $result = [
+                MailSystemResult::RESPONSE_KEY_CODE => MailSystemResult::RESPONSE_CODE_FAILURE,
+                MailSystemResult::RESPONSE_KEY_MESSAGE => $e->getMessage()
+            ];
+        }
 
         return new MailSystemResult($result, $uniqueMessage);
     }
@@ -91,10 +98,7 @@ class MailSystem implements MailSystemInterface
         try {
             return $this->mailin->send_email($rawMessage);
         } catch (\Exception $e) {
-            return [
-                'code' => 'failure',
-                'message' => $e->getMessage()
-            ];
+            throw new MailSystemException($e->getMessage());
         }
     }
 
