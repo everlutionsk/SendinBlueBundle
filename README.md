@@ -18,7 +18,8 @@ public function registerBundles()
 {
     return array(
         // ...
-        new Everlution\SendinBlueBundle\EverlutionSendinBlueBundle()
+        new Everlution\EmailBundle\EverlutionEmailBundle(),
+        new Everlution\SendinBlueBundle\EverlutionSendinBlueBundle(),
     );
 }
 ```
@@ -35,7 +36,9 @@ Firstly, you must modify EmailBundle configuration to work with SendinBlueBundle
 
 # EmailBundle Configuration
 everlution_email:
+    domain_name: '%domain%' # example.com
     mail_system: everlution.sendin_blue.mail_system
+    async_stream: everlution.email.stream.kernel_terminate
     request_processors:
         inbound: everlution.sendin_blue.inbound.request_processor
         outbound_message_event: everlution.sendin_blue.outbound.message_event.request_processor
